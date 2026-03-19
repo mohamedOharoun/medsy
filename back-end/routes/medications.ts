@@ -26,7 +26,7 @@ medicationsRouter.get('/search', (c) => {
         params.push(`%${administration}%`);
     }
 
-    query += " LIMIT 50"; // limit results to prevent huge payload
+    query += " LIMIT 50";
 
     try {
         const stmt = db.prepare(query);
