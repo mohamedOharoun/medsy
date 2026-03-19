@@ -16,7 +16,9 @@ export function initDB() {
       excipientes TEXT,
       viasAdministracion TEXT,
       presentaciones TEXT,
-      formaFarmaceutica TEXT
+      formaFarmaceutica TEXT,
+      prospectoPdf TEXT,
+      prospectoHtml TEXT
     )
   `);
 

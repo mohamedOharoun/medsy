@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { db } from "../db/db";
-import { simplifyMedicationName } from "../utils/name-simplifier";
+import { simplifyMedicationName } from "../utils/name-simplifier.ts";
 
 const treatmentsRouter = new Hono();
 
@@ -8,7 +8,7 @@ const treatmentsRouter = new Hono();
 treatmentsRouter.get('/', (c) => {
     try {
         const results: any[] = db.prepare("SELECT * FROM treatments ORDER BY id DESC").all();
-        
+
         const simplifiedResults = results.map(t => ({
             ...t,
             medicationName: simplifyMedicationName(t.medicationName) || t.medicationName
@@ -33,8 +33,8 @@ treatmentsRouter.post('/', async (c) => {
         const stmt = db.prepare("INSERT INTO treatments (medicationName, dosage, frequency) VALUES (?, ?, ?)");
         const info = stmt.run(medicationName, dosage, frequency);
 
-        return c.json({ 
-            success: true, 
+        return c.json({
+            success: true,
             data: { id: info.lastInsertRowid, medicationName, dosage, frequency, userId: 1 }
         }, 201);
     } catch (e) {

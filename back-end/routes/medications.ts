@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { db } from "../db/db";
-import { simplifyMedicationName } from "../utils/name-simplifier";
+import { simplifyMedicationName } from "../utils/name-simplifier.ts";
 
 const medicationsRouter = new Hono();
 
@@ -41,6 +41,30 @@ medicationsRouter.get('/search', (c) => {
         return c.json({ success: true, data: simplifiedResults });
     } catch (e) {
         return c.json({ success: false, error: "Database error" }, 500);
+    }
+});
+
+// --- Obtener detalle de un medicamento ---
+medicationsRouter.get('/:id', (c) => {
+    const id = c.req.param('id');
+    try {
+        const medication: any = db.prepare("SELECT * FROM medicamentos WHERE nregistro = ?").get(id);
+
+        if (!medication) {
+            return c.json({ success: false, message: "No se encontró el medicamento" }, 404);
+        }
+
+        return c.json({
+            success: true,
+            data: {
+                ...medication,
+                nombreOriginal: medication.nombre,
+                nombre: simplifyMedicationName(medication.nombre) || medication.nombre
+            }
+        });
+    } catch (e) {
+        console.error("Error al obtener detalle:", e);
+        return c.json({ success: false, error: "Error en el servidor" }, 500);
     }
 });
 
