@@ -1,7 +1,0 @@
-node_modules
-.git
-.vscode
-*.sqlite
-*.sqlite-journal
-Dockerfile
-.dockerignore
