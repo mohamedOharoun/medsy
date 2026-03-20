@@ -65,7 +65,7 @@ export default function HomeScreen() {
       </ScrollView>
 
       {/* Botón Flotante */}
-      <FAB onPress={() => actions.router.push('/treatments')} />
+      <FAB onPress={() => actions.router.push(`/treatments?add=${Date.now()}`)} />
 
     </SafeAreaView>
   );
