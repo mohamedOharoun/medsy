@@ -87,15 +87,22 @@ export function NavBar({ state, descriptors, navigation }: BottomTabBarProps) {
             const title = options.title?.toLowerCase() || '';
             const name = route.name.toLowerCase();
 
+            let tabTitle = options.title !== undefined ? options.title : route.name;
+            if (route.name === 'index' && !options.title) tabTitle = 'Home';
+
             if (name === 'search' || title.includes('search')) {
               iconName = 'search';
-            } else if (name === 'index' || title.includes('home')) {
+            }
+            else if (name === 'index' || title.includes('home')) {
               iconName = 'home';
-            } else if (name === 'treatments' || title.includes('treatments')) {
+            }
+            else if (name === 'treatments' || title.includes('treatments')) {
               iconName = 'clipboard-list';
-            } else if (name === 'history' || title.includes('history')) {
+            }
+            else if (name === 'history' || title.includes('history')) {
               iconName = 'history';
-            } else {
+            }
+            else {
               return null;
             }
 
@@ -106,6 +113,7 @@ export function NavBar({ state, descriptors, navigation }: BottomTabBarProps) {
                 onPress={onPress}
                 iconName={iconName}
                 activeColor={ACTIVE_COLOR}
+                title={tabTitle}
               />
             );
           })}
@@ -120,11 +128,13 @@ const TabItem = ({
   onPress,
   iconName,
   activeColor,
+  title,
 }: {
   isFocused: boolean;
   onPress: () => void;
   iconName: string;
   activeColor: string;
+  title: string;
 }) => {
   const translateY = useSharedValue(0);
   const iconOpacity = useSharedValue(0.4);
@@ -157,12 +167,14 @@ const TabItem = ({
 
   return (
     <Pressable style={styles.menuElement} onPress={onPress}>
-      <Animated.View style={staticIconStyle}>
-        <FontAwesome5 name={iconName} size={22} color="#000" />
+      <Animated.View style={[staticIconStyle, { alignItems: 'center' }]}>
+        <FontAwesome5 name={iconName} size={20} color="#000" />
+        <Animated.Text style={styles.tabText} numberOfLines={1}>{title}</Animated.Text>
       </Animated.View>
 
       <Animated.View style={[styles.floatBubble, floatBubbleStyle]}>
-        <FontAwesome5 name={iconName} size={28} color={activeColor} style={{ opacity: 0.7 }} />
+        <FontAwesome5 name={iconName} size={24} color={activeColor} style={{ opacity: 0.9 }} />
+        <Animated.Text style={styles.activeTabText} numberOfLines={1}>{title}</Animated.Text>
       </Animated.View>
     </Pressable>
   );
@@ -223,8 +235,8 @@ const styles = StyleSheet.create({
   },
   floatBubble: {
     position: 'absolute',
-    width: 60,
-    height: 60,
+    width: 70,
+    height: 70,
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -232,5 +244,18 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowRadius: 2,
+  },
+  tabText: {
+    fontSize: 11,
+    color: '#000',
+    marginTop: 2,
+    fontWeight: '500',
+  },
+  activeTabText: {
+    fontSize: 11,
+    color: ACTIVE_COLOR,
+    opacity: 0.9,
+    marginTop: 2,
+    fontWeight: 'bold',
   },
 });
