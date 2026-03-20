@@ -18,7 +18,7 @@ export default function TreatmentsScreen() {
       <StatusBar barStyle="dark-content" backgroundColor="#F2F2F7" />
       <View style={styles.container}>
         
-        <TreatmentsHeader title="Mis tratamientos" />
+        <TreatmentsHeader title="My treatments" />
 
         {state.loading ? (
           <LoadingTreatments />

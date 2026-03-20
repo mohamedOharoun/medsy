@@ -15,7 +15,7 @@ import { useHomeLogic, getGreeting } from '../../hooks/use-home-logic';
 import { styles } from '../../styles/tabs/home.styles';
 import { HomeHeader, FAB, LoadingHome, EmptyHomeState } from '../../components/home/home-components';
 
-const USER_NAME = 'Usuario';
+const USER_NAME = 'User';
 
 export default function HomeScreen() {
   const { state, actions } = useHomeLogic();
@@ -51,7 +51,7 @@ export default function HomeScreen() {
         )}
 
         {/* Listado de Medicamentos */}
-        {state.total > 0 && <Text style={styles.sectionLabel}>Mis medicamentos de hoy</Text>}
+        {state.total > 0 && <Text style={styles.sectionLabel}>My medications for today</Text>}
 
         {state.total > 0 ? (
           state.reminders.map((item) => (

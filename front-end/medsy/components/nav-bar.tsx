@@ -87,13 +87,13 @@ export function NavBar({ state, descriptors, navigation }: BottomTabBarProps) {
             const title = options.title?.toLowerCase() || '';
             const name = route.name.toLowerCase();
 
-            if (name === 'search' || title.includes('buscar')) {
+            if (name === 'search' || title.includes('search')) {
               iconName = 'search';
-            } else if (name === 'index' || title.includes('inicio') || title.includes('home')) {
+            } else if (name === 'index' || title.includes('home')) {
               iconName = 'home';
-            } else if (name === 'treatments' || title.includes('tratamientos')) {
+            } else if (name === 'treatments' || title.includes('treatments')) {
               iconName = 'clipboard-list';
-            } else if (name === 'history' || title.includes('historial')) {
+            } else if (name === 'history' || title.includes('history')) {
               iconName = 'history';
             } else {
               return null;

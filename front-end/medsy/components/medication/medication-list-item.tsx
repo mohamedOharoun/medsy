@@ -19,7 +19,7 @@ export const MedicationListItem: React.FC<Props> = ({ treatment, onEdit, onDelet
         <Text style={styles.title}>{treatment.medicationName}</Text>
         <Text style={styles.details}>{treatment.dosage} • {treatment.frequency}</Text>
         {treatment.times && treatment.times.length > 0 && (
-          <Text style={styles.timesText}>Próximas tomas: {treatment.times.join(', ')}</Text>
+          <Text style={styles.timesText}>Next intakes: {treatment.times.join(', ')}</Text>
         )}
       </View>
       <View style={styles.actions}>

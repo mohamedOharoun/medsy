@@ -19,8 +19,8 @@ export function useSearchLogic() {
   const [showFilters, setShowFilters] = useState(false);
 
   const OPTIONS = [
-    'Todas', 'Oral', 'Tópica', 'Intravenosa', 'Intramuscular', 'Subcutánea',
-    'Inhalatoria', 'Oftálmica', 'Ótica', 'Nasal', 'Rectal', 'Vaginal', 'Transdérmica'
+    'All', 'Oral', 'Topical', 'Intravenous', 'Intramuscular', 'Subcutaneous',
+    'Inhalation', 'Ophthalmic', 'Otic', 'Nasal', 'Rectal', 'Vaginal', 'Transdermal'
   ];
 
   const handleSearch = async () => {

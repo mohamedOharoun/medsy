@@ -12,7 +12,10 @@ coverage
 
 # logs
 logs
-_.log
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # dotenv environment variable files
@@ -27,8 +30,9 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .cache
 *.tsbuildinfo
 
-# IntelliJ based IDEs
+# IDEs
 .idea
+.vscode
 
 # Finder (MacOS) folder config
 .DS_Store

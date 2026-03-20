@@ -1,9 +1,9 @@
 export const NUMBERS = Array.from({ length: 10 }, (_, i) => String(i + 1)).concat(['15', '20', '30', '40', '50', '100', '200', '250', '400', '500', '600', '800', '1000']);
-export const UNITS = ['mg', 'g', 'ml', 'pastilla(s)', 'sobre(s)', 'gota(s)', 'inyección'];
+export const UNITS = ['mg', 'g', 'ml', 'pill(s)', 'sachet(s)', 'drop(s)', 'injection'];
 export const FREQUENCIES = [
-  '1 vez al día', '2 veces al día', '3 veces al día', '4 veces al día',
-  'Cada 4 horas', 'Cada 6 horas', 'Cada 8 horas', 'Cada 12 horas', 'Cada 24 horas',
-  'Solo si es necesario'
+  'Once a day', '2 times a day', '3 times a day', '4 times a day',
+  'Every 4 hours', 'Every 6 hours', 'Every 8 hours', 'Every 12 hours', 'Every 24 hours',
+  'Only if needed'
 ];
 
 export const parseCIMAField = (field: string | any): string => {
@@ -22,7 +22,7 @@ export const parseCIMAField = (field: string | any): string => {
 };
 
 export const calculateDoseTimes = (frequency: string, startTime: Date): string[] => {
-  if (!frequency || frequency === 'Solo si es necesario') {
+  if (!frequency || frequency === 'Only if needed') {
     return [];
   }
 
@@ -34,10 +34,10 @@ export const calculateDoseTimes = (frequency: string, startTime: Date): string[]
     return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
   };
 
-  if (frequency === '1 vez al día' || frequency === 'Cada 24 horas') {
+  if (frequency === 'Once a day' || frequency === 'Every 24 hours') {
     times.push(formatTime(startH, startM));
-  } else if (frequency.startsWith('Cada')) {
-    const match = frequency.match(/Cada (\d+) horas/);
+  } else if (frequency.startsWith('Every')) {
+    const match = frequency.match(/Every (\d+) hours/);
     if (match) {
       const interval = parseInt(match[1]);
       const count = Math.floor(24 / interval);
@@ -46,8 +46,8 @@ export const calculateDoseTimes = (frequency: string, startTime: Date): string[]
         times.push(formatTime(nextH, startM));
       }
     }
-  } else if (frequency.includes('veces al día')) {
-    const match = frequency.match(/(\d+) veces al día/);
+  } else if (frequency.includes('times a day')) {
+    const match = frequency.match(/(\d+) times a day/);
     if (match) {
       const count = parseInt(match[1]);
       const interval = Math.floor(24 / count);

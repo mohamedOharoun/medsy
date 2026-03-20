@@ -45,7 +45,7 @@ export function useHomeLogic() {
 
 export function getGreeting() {
   const h = new Date().getHours();
-  if (h < 12) return 'Buenos días';
-  if (h < 20) return 'Buenas tardes';
-  return 'Buenas noches';
+  if (h < 12) return 'Good morning';
+  if (h < 20) return 'Good afternoon';
+  return 'Good evening';
 }
