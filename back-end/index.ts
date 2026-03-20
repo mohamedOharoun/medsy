@@ -25,6 +25,6 @@ app.route('/api/treatments', treatmentsRouter);
 app.get('/', (c) => c.text('API Medsy is running!'));
 
 export default {
-    port: 3000,
+    port: process.env.PORT || 3000,
     fetch: app.fetch,
 };
