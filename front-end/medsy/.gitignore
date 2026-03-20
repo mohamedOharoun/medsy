@@ -37,3 +37,4 @@ ios/
 # Generated files
 expo-env.d.ts
 
+.expo/
