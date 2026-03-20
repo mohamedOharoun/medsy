@@ -33,7 +33,6 @@ export function NavBar({ state, descriptors, navigation }: BottomTabBarProps) {
               }
             };
 
-            // 🔹 Lógica simple de iconos
             let iconName: string | null = null;
 
             if (
@@ -59,18 +58,12 @@ export function NavBar({ state, descriptors, navigation }: BottomTabBarProps) {
             if (!iconName) return null;
 
             return (
-              <Pressable
+              <TabItem
                 key={route.key}
-                style={styles.menuElement}
+                isFocused={isFocused}
                 onPress={onPress}
-              >
-                <FontAwesome5
-                  name={iconName}
-                  size={22}
-                  color="#000"
-                  style={{ opacity: isFocused ? 1 : 0.5 }}
-                />
-              </Pressable>
+                iconName={iconName}
+              />
             );
           })}
         </View>
@@ -78,6 +71,34 @@ export function NavBar({ state, descriptors, navigation }: BottomTabBarProps) {
     </View>
   );
 }
+
+const TabItem = ({
+  isFocused,
+  onPress,
+  iconName,
+}: {
+  isFocused: boolean;
+  onPress: () => void;
+  iconName: string;
+}) => {
+  return (
+    <Pressable style={styles.menuElement} onPress={onPress}>
+      <View
+        style={[
+          styles.iconWrapper,
+          isFocused && styles.iconWrapperActive,
+        ]}
+      >
+        <FontAwesome5
+          name={iconName}
+          size={isFocused ? 26 : 22}
+          color={isFocused ? '#000' : '#000'}
+          style={{ opacity: isFocused ? 1 : 0.4 }}
+        />
+      </View>
+    </Pressable>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -110,5 +131,12 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  iconWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  iconWrapperActive: {
+    transform: [{ scale: 1.2 }],
   },
 });
