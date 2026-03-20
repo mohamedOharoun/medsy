@@ -8,6 +8,7 @@ export default function TabLayout() {
 
   return (
     <Tabs
+      tabBar={props => <NavBar {...props} />}
       screenOptions={{
         tabBarActiveTintColor: '#2E7D5E',
         headerShown: false,
@@ -41,6 +42,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="clock.fill" color={color} />,
         }}
       />
+
     </Tabs>
   );
 }
