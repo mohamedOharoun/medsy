@@ -84,11 +84,20 @@ export function NavBar({ state, descriptors, navigation }: BottomTabBarProps) {
             };
 
             let iconName;
-            if (options.title?.toLowerCase().includes('search') || route.name.toLowerCase().includes('search') || route.name === 'explore') { iconName = 'search'; }
-            else if (options.title?.toLowerCase().includes('hist') || route.name.toLowerCase().includes('history')) { iconName = 'chart-line'; }
-            else if (options.title?.toLowerCase().includes('fam') || route.name.toLowerCase().includes('family')) { iconName = 'users'; }
-            else if (route.name === 'index') { iconName = 'home'; }
-            else { return null; }
+            const title = options.title?.toLowerCase() || '';
+            const name = route.name.toLowerCase();
+
+            if (name === 'search' || title.includes('search')) {
+              iconName = 'search';
+            } else if (name === 'index' || title.includes('home')) {
+              iconName = 'home';
+            } else if (name === 'treatments' || title.includes('treatments')) {
+              iconName = 'clipboard-list';
+            } else if (name === 'history' || title.includes('history')) {
+              iconName = 'history';
+            } else {
+              return null;
+            }
 
             return (
               <TabItem
