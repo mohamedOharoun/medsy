@@ -11,7 +11,8 @@ treatmentsRouter.get('/', (c) => {
 
         const simplifiedResults = results.map(t => ({
             ...t,
-            medicationName: simplifyMedicationName(t.medicationName) || t.medicationName
+            medicationName: simplifyMedicationName(t.medicationName) || t.medicationName,
+            times: t.times ? JSON.parse(t.times) : []
         }));
 
         return c.json({ success: true, data: simplifiedResults });
@@ -24,18 +25,19 @@ treatmentsRouter.get('/', (c) => {
 treatmentsRouter.post('/', async (c) => {
     try {
         const body = await c.req.json();
-        const { medicationName, dosage, frequency } = body;
+        const { medicationName, dosage, frequency, times } = body;
 
         if (!medicationName || !dosage || !frequency) {
             return c.json({ success: false, error: "Missing required fields" }, 400);
         }
 
-        const stmt = db.prepare("INSERT INTO treatments (medicationName, dosage, frequency) VALUES (?, ?, ?)");
-        const info = stmt.run(medicationName, dosage, frequency);
+        const timesStr = times ? JSON.stringify(times) : null;
+        const stmt = db.prepare("INSERT INTO treatments (medicationName, dosage, frequency, times) VALUES (?, ?, ?, ?)");
+        const info = stmt.run(medicationName, dosage, frequency, timesStr);
 
         return c.json({
             success: true,
-            data: { id: info.lastInsertRowid, medicationName, dosage, frequency, userId: 1 }
+            data: { id: info.lastInsertRowid, medicationName, dosage, frequency, times, userId: 1 }
         }, 201);
     } catch (e) {
         return c.json({ success: false, error: "Error adding treatment" }, 500);
@@ -47,10 +49,11 @@ treatmentsRouter.put('/:id', async (c) => {
     try {
         const id = c.req.param('id');
         const body = await c.req.json();
-        const { medicationName, dosage, frequency } = body;
+        const { medicationName, dosage, frequency, times } = body;
 
-        const updateStmt = db.prepare("UPDATE treatments SET medicationName = ?, dosage = ?, frequency = ? WHERE id = ?");
-        updateStmt.run(medicationName, dosage, frequency, id);
+        const timesStr = times ? JSON.stringify(times) : null;
+        const updateStmt = db.prepare("UPDATE treatments SET medicationName = ?, dosage = ?, frequency = ?, times = ? WHERE id = ?");
+        updateStmt.run(medicationName, dosage, frequency, timesStr, id);
 
         return c.json({ success: true, message: "Treatment updated" });
     } catch (e) {

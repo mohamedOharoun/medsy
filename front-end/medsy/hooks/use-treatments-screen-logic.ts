@@ -21,11 +21,11 @@ export function useTreatmentsScreenLogic() {
     setModalVisible(false);
   };
 
-  const handleSave = (name: string, dosage: string, frequency: string) => {
+  const handleSave = (name: string, dosage: string, frequency: string, times?: string[]) => {
     if (editingTreatment) {
-      updateTreatment(editingTreatment.id, name, dosage, frequency);
+      updateTreatment(editingTreatment.id, name, dosage, frequency, times);
     } else {
-      addTreatment(name, dosage, frequency);
+      addTreatment(name, dosage, frequency, times);
     }
   };
 

@@ -29,7 +29,8 @@ export function initDB() {
       userId INTEGER DEFAULT 1,
       medicationName TEXT NOT NULL,
       dosage TEXT NOT NULL,
-      frequency TEXT NOT NULL
+      frequency TEXT NOT NULL,
+      times TEXT
     )
   `);
 }

@@ -18,6 +18,9 @@ export const MedicationListItem: React.FC<Props> = ({ treatment, onEdit, onDelet
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{treatment.medicationName}</Text>
         <Text style={styles.details}>{treatment.dosage} • {treatment.frequency}</Text>
+        {treatment.times && treatment.times.length > 0 && (
+          <Text style={styles.timesText}>Próximas tomas: {treatment.times.join(', ')}</Text>
+        )}
       </View>
       <View style={styles.actions}>
         <TouchableOpacity style={styles.iconButton} onPress={() => onEdit(treatment)}>
@@ -66,6 +69,12 @@ const styles = StyleSheet.create({
   details: {
     fontSize: 14,
     color: '#8E8E93',
+  },
+  timesText: {
+    fontSize: 12,
+    color: '#2E7D5E',
+    marginTop: 2,
+    fontWeight: '500',
   },
   actions: {
     flexDirection: 'row',

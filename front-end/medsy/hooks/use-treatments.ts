@@ -22,13 +22,13 @@ export function useTreatments() {
     loadTreatments();
   }, [loadTreatments]);
 
-  const onAddTreatment = async (name: string, dosage: string, frequency: string) => {
-    await api.addTreatment(name, dosage, frequency);
+  const onAddTreatment = async (name: string, dosage: string, frequency: string, times?: string[]) => {
+    await api.addTreatment(name, dosage, frequency, times);
     await loadTreatments();
   };
 
-  const onUpdateTreatment = async (id: number, name: string, dosage: string, frequency: string) => {
-    await api.updateTreatment(id, name, dosage, frequency);
+  const onUpdateTreatment = async (id: number, name: string, dosage: string, frequency: string, times?: string[]) => {
+    await api.updateTreatment(id, name, dosage, frequency, times);
     await loadTreatments();
   };
 

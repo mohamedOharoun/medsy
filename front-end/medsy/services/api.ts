@@ -21,6 +21,7 @@ export interface Treatment {
   medicationName: string;
   dosage: string;
   frequency: string;
+  times?: string[];
 }
 
 export interface MedicationCatalogItem {
@@ -50,12 +51,12 @@ export const getTreatments = async (): Promise<Treatment[]> => {
   }
 };
 
-export const addTreatment = async (medicationName: string, dosage: string, frequency: string): Promise<Treatment | null> => {
+export const addTreatment = async (medicationName: string, dosage: string, frequency: string, times?: string[]): Promise<Treatment | null> => {
   try {
     const res = await fetch(`${API_URL}/treatments`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ medicationName, dosage, frequency }),
+      body: JSON.stringify({ medicationName, dosage, frequency, times }),
     });
     const json = await res.json();
     return json.data;
@@ -65,12 +66,12 @@ export const addTreatment = async (medicationName: string, dosage: string, frequ
   }
 };
 
-export const updateTreatment = async (id: number, medicationName: string, dosage: string, frequency: string): Promise<boolean> => {
+export const updateTreatment = async (id: number, medicationName: string, dosage: string, frequency: string, times?: string[]): Promise<boolean> => {
   try {
     const res = await fetch(`${API_URL}/treatments/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ medicationName, dosage, frequency }),
+      body: JSON.stringify({ medicationName, dosage, frequency, times }),
     });
     const json = await res.json();
     return json.success;
