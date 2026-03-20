@@ -3,12 +3,9 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from '../../styles/tabs/treatments.styles';
 
-export const TreatmentsHeader = ({ title, onAddPress }: any) => (
+export const TreatmentsHeader = ({ title }: any) => (
   <View style={styles.header}>
     <Text style={styles.title}>{title}</Text>
-    <TouchableOpacity style={styles.addButton} onPress={onAddPress}>
-      <Ionicons name="add" size={26} color="#fff" />
-    </TouchableOpacity>
   </View>
 );
 
@@ -28,4 +25,9 @@ export const EmptyTreatmentsState = ({ onAddPress }: any) => (
         <Text style={styles.emptyBtnText}>Comenzar a añadir</Text>
     </TouchableOpacity>
   </View>
+);
+export const FAB = ({ onPress }: any) => (
+  <TouchableOpacity style={styles.fab} onPress={onPress} activeOpacity={0.8}>
+    <Ionicons name="add" size={32} color="#fff" />
+  </TouchableOpacity>
 );

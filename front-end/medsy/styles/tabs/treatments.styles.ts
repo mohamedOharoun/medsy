@@ -79,5 +79,21 @@ export const styles = StyleSheet.create({
     color: '#2E7D5E',
     fontWeight: '600',
     fontSize: 16,
-  }
+  },
+  fab: {
+    position: 'absolute',
+    bottom: 100,
+    right: 24,
+    backgroundColor: '#2E7D5E',
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#2E7D5E',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.35,
+    shadowRadius: 10,
+    elevation: 8,
+  },
 });

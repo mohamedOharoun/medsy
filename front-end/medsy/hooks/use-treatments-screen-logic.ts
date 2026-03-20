@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocalSearchParams } from 'expo-router';
 import { useTreatments } from '../hooks/use-treatments';
 import { Treatment } from '../services/api';
 
@@ -6,11 +7,18 @@ export function useTreatmentsScreenLogic() {
   const { treatments, loading, addTreatment, updateTreatment, deleteTreatment } = useTreatments();
   const [modalVisible, setModalVisible] = useState(false);
   const [editingTreatment, setEditingTreatment] = useState<Treatment | null>(null);
+  const { add } = useLocalSearchParams();
 
   const handleAddPress = () => {
     setEditingTreatment(null);
     setModalVisible(true);
   };
+
+  useEffect(() => {
+    if (add !== undefined) { // Check for presence of 'add' regardless of its value
+      handleAddPress();
+    }
+  }, [add]);
 
   const handleEditPress = (t: Treatment) => {
     setEditingTreatment(t);

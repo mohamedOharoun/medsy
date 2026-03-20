@@ -8,7 +8,7 @@ import { TreatmentModal } from '../../components/treatment/treatment-modal';
 // Importaciones separadas
 import { useTreatmentsScreenLogic } from '../../hooks/use-treatments-screen-logic';
 import { styles } from '../../styles/tabs/treatments.styles';
-import { TreatmentsHeader, LoadingTreatments, EmptyTreatmentsState } from '../../components/treatment/treatments-components';
+import { TreatmentsHeader, LoadingTreatments, EmptyTreatmentsState, FAB } from '../../components/treatment/treatments-components';
 
 export default function TreatmentsScreen() {
   const { state, actions } = useTreatmentsScreenLogic();
@@ -18,7 +18,7 @@ export default function TreatmentsScreen() {
       <StatusBar barStyle="dark-content" backgroundColor="#F2F2F7" />
       <View style={styles.container}>
         
-        <TreatmentsHeader title="Mis tratamientos" onAddPress={actions.handleAddPress} />
+        <TreatmentsHeader title="Mis tratamientos" />
 
         {state.loading ? (
           <LoadingTreatments />
@@ -47,6 +47,8 @@ export default function TreatmentsScreen() {
           onClose={actions.closeModal}
           onSave={actions.handleSave}
         />
+        
+        <FAB onPress={actions.handleAddPress} />
       </View>
     </SafeAreaView>
   );
