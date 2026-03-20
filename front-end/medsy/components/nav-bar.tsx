@@ -1,14 +1,25 @@
 import React from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 export function NavBar({ state, descriptors, navigation }: BottomTabBarProps) {
+  const visibleRoutes = state.routes.filter(
+    (route) => (descriptors[route.key].options as any).href !== null
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.navbar}>
         <View style={styles.menuWrapper}>
-          {state.routes.map((route, index) => {
-            const isFocused = state.index === index;
+          {visibleRoutes.map((route) => {
+            const { options } = descriptors[route.key];
+
+            const originalIndex = state.routes.findIndex(
+              (r) => r.key === route.key
+            );
+
+            const isFocused = state.index === originalIndex;
 
             const onPress = () => {
               const event = navigation.emit({
@@ -22,13 +33,42 @@ export function NavBar({ state, descriptors, navigation }: BottomTabBarProps) {
               }
             };
 
+            // 🔹 Lógica simple de iconos
+            let iconName: string | null = null;
+
+            if (
+              options.title?.toLowerCase().includes('search') ||
+              route.name.toLowerCase().includes('search') ||
+              route.name === 'explore'
+            ) {
+              iconName = 'search';
+            } else if (
+              options.title?.toLowerCase().includes('hist') ||
+              route.name.toLowerCase().includes('history')
+            ) {
+              iconName = 'chart-line';
+            } else if (
+              options.title?.toLowerCase().includes('fam') ||
+              route.name.toLowerCase().includes('family')
+            ) {
+              iconName = 'users';
+            } else if (route.name === 'index') {
+              iconName = 'home';
+            }
+
+            if (!iconName) return null;
+
             return (
-              <Pressable key={route.key} style={styles.menuElement} onPress={onPress}>
-                <View
-                  style={[
-                    styles.placeholder,
-                    { opacity: isFocused ? 1 : 0.5 },
-                  ]}
+              <Pressable
+                key={route.key}
+                style={styles.menuElement}
+                onPress={onPress}
+              >
+                <FontAwesome5
+                  name={iconName}
+                  size={22}
+                  color="#000"
+                  style={{ opacity: isFocused ? 1 : 0.5 }}
                 />
               </Pressable>
             );
@@ -70,11 +110,5 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  placeholder: {
-    width: 20,
-    height: 20,
-    backgroundColor: '#000',
-    borderRadius: 10,
   },
 });
