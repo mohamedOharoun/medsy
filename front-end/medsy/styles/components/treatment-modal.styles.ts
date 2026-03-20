@@ -1,83 +1,85 @@
 import { StyleSheet, Platform } from 'react-native';
 
 export const styles = StyleSheet.create({
-  overlay: { 
-    flex: 1, 
-    backgroundColor: 'rgba(0,0,0,0.4)', 
-    justifyContent: 'flex-end' 
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'flex-end'
   },
-  keyboardView: { 
-    width: '100%' 
+  keyboardView: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    width: '100%'
   },
-  modalContainer: { 
-    backgroundColor: '#fff', 
-    borderTopLeftRadius: 28, 
-    borderTopRightRadius: 28, 
-    padding: 24, 
-    paddingBottom: Platform.OS === 'ios' ? 40 : 24, 
-    maxHeight: '90%' 
+  modalContainer: {
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    padding: 24,
+    paddingBottom: Platform.OS === 'ios' ? 40 : 24,
+    maxHeight: '90%'
   },
-  dragHandle: { 
-    width: 40, 
-    height: 5, 
-    backgroundColor: '#E5E5EA', 
-    borderRadius: 3, 
-    alignSelf: 'center', 
-    marginBottom: 20 
+  dragHandle: {
+    width: 40,
+    height: 5,
+    backgroundColor: '#E5E5EA',
+    borderRadius: 3,
+    alignSelf: 'center',
+    marginBottom: 20
   },
-  title: { 
-    fontSize: 22, 
-    fontWeight: 'bold', 
-    marginBottom: 24, 
-    color: '#1C1C1E' 
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 24,
+    color: '#1C1C1E'
   },
-  label: { 
-    fontSize: 14, 
-    fontWeight: '600', 
-    color: '#3A3A3C', 
-    marginBottom: 8, 
-    marginLeft: 4 
-  },
-
-  dropdownContainer: { 
-    marginBottom: 20 
-  },
-  input: { 
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
-    alignItems: 'center', 
-    backgroundColor: '#F2F2F7', 
-    borderRadius: 14, 
-    padding: 16, 
-    height: 52 
-  },
-  inputRow: { 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    backgroundColor: '#F2F2F7', 
-    borderRadius: 14, 
-    paddingHorizontal: 16, 
-    height: 52 
-  },
-  inputText: { 
-    flex: 1, 
-    fontSize: 16, 
-    color: '#1C1C1E', 
-    height: '100%' 
+  label: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#3A3A3C',
+    marginBottom: 8,
+    marginLeft: 4
   },
 
-  dropdownList: { 
-    backgroundColor: '#fff', 
-    borderWidth: 1, 
-    borderColor: '#F2F2F7', 
-    borderRadius: 14, 
-    marginTop: 4, 
-    overflow: 'hidden' 
+  dropdownContainer: {
+    marginBottom: 20
   },
-  dropdownOption: { 
-    padding: 14, 
-    borderBottomWidth: 1, 
-    borderBottomColor: '#F2F2F7' 
+  input: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#F2F2F7',
+    borderRadius: 14,
+    padding: 16,
+    height: 52
+  },
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F2F2F7',
+    borderRadius: 14,
+    paddingHorizontal: 16,
+    height: 52
+  },
+  inputText: {
+    flex: 1,
+    fontSize: 16,
+    color: '#1C1C1E',
+    height: '100%'
+  },
+
+  dropdownList: {
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#F2F2F7',
+    borderRadius: 14,
+    marginTop: 4,
+    overflow: 'hidden'
+  },
+  dropdownOption: {
+    padding: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F2F2F7'
   },
 
   timesText: {
@@ -87,7 +89,6 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
   },
 
-  // Estilos mejorados para el horario
   timeSection: {
     backgroundColor: '#F8F9FA',
     borderRadius: 18,
@@ -160,39 +161,39 @@ export const styles = StyleSheet.create({
   },
 
   buttonRow: {
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     gap: 16
   },
-  button: { 
-    flex: 1, 
-    padding: 16, 
-    borderRadius: 14, 
-    alignItems: 'center' 
+  button: {
+    flex: 1,
+    padding: 16,
+    borderRadius: 14,
+    alignItems: 'center'
   },
-  cancelBtn: { 
-    backgroundColor: '#F2F2F7' 
+  cancelBtn: {
+    backgroundColor: '#F2F2F7'
   },
-  saveBtn: { 
-    backgroundColor: '#2E7D5E', 
-    shadowColor: '#2E7D5E', 
-    shadowOffset: { width: 0, height: 4 }, 
-    shadowOpacity: 0.3, 
-    shadowRadius: 8, 
-    elevation: 4 
+  saveBtn: {
+    backgroundColor: '#2E7D5E',
+    shadowColor: '#2E7D5E',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 4
   },
-  disabledBtn: { 
-    opacity: 0.5, 
-    shadowOpacity: 0 
+  disabledBtn: {
+    opacity: 0.5,
+    shadowOpacity: 0
   },
-  cancelText: { 
-    color: '#2E7D5E', 
-    fontWeight: '600', 
-    fontSize: 16 
+  cancelText: {
+    color: '#2E7D5E',
+    fontWeight: '600',
+    fontSize: 16
   },
-  saveText: { 
-    color: '#fff', 
-    fontWeight: '600', 
-    fontSize: 16 
+  saveText: {
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 16
   }
 });
