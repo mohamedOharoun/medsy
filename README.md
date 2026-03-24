@@ -5,7 +5,8 @@
 - Ayman Asbai Ghoudan
 - Alejandro de Olózaga Ramírez
 - Laura Lizhi Herrera Negrín
-- Mohamed Oulad Haroun Zarkik
+- Mohamed O. Haroun Zarkik
+- Raúl Reguero Bravo
 
 
 ## Description
