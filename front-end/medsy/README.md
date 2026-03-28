@@ -1,6 +1,4 @@
-# Welcome to your Expo app 👋
-
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# Instructions
 
 ## Get started
 
@@ -10,11 +8,30 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
-2. Start the app
+## Start the app
+In order to start running the project, it is necessary to follow these steps:
+1. Go to back-end folder.
+```bash
+cd .\back-end\
+```
 
-   ```bash
-   npx expo start
-   ```
+2. Start back-end
+```
+bun start --watch index.ts
+```
+
+3. Go to front-end folder.
+```bash
+cd .\front-end\medsy
+```
+
+4. Start front-ed
+```bash
+npx expo start
+```
+
+It is mandatory to change the Windows Network profile to private to avoid the ``--tunnel`` flag and run the app on the mobile phone. Then, we need to change the host IP address in ``api.ts`` for the computer IP (ipconfig for its visualization).
+
 
 In the output, you'll find options to open the app in a
 
@@ -42,9 +59,3 @@ To learn more about developing your project with Expo, look at the following res
 - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
 - [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
