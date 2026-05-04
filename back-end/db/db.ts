@@ -1,3 +1,4 @@
+/// <reference types="bun-types" />
 import { Database } from "bun:sqlite";
 
 // 1. Configuración y base de datos
