@@ -16,6 +16,7 @@ import { Treatment } from '../../services/api';
 import { styles } from '../../styles/components/treatment-modal.styles';
 import { NUMBERS, UNITS, FREQUENCIES, parseCIMAField } from './treatment-utils';
 import { useTreatmentModalLogic } from '../../hooks/use-treatment-modal-logic';
+import { scheduleMedicationNotifications } from '../../services/notifications.service';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -118,7 +119,7 @@ export const TreatmentModal: React.FC<Props> = ({ visible, treatment, onClose, o
     return { opacity };
   });
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!state.selectedMed || !state.dosageNum || !state.dosageUnit || !state.frequency) {
       return alert("Please select all form fields.");
     }
@@ -126,6 +127,11 @@ export const TreatmentModal: React.FC<Props> = ({ visible, treatment, onClose, o
     const finalName = state.selectedMed.nombre;
 
     onSave(finalName, finalDosage, state.frequency, state.calculatedTimes);
+    
+    if (state.calculatedTimes && state.calculatedTimes.length > 0) {
+      await scheduleMedicationNotifications(finalName, finalDosage, state.calculatedTimes);
+    }
+
     closeWithAnimation();
   };
 
@@ -273,4 +279,3 @@ export const TreatmentModal: React.FC<Props> = ({ visible, treatment, onClose, o
     </Modal>
   );
 };
-
