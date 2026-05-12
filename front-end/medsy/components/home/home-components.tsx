@@ -25,14 +25,14 @@ export const FAB = ({ onPress }: any) => (
 export const LoadingHome = () => (
   <View style={styles.centered}>
     <ActivityIndicator size="large" color="#2E7D5E" />
-    <Text style={styles.loadingText}>Loading your medications...</Text>
+    <Text style={styles.loadingText}>Cargando tus medicamentos...</Text>
   </View>
 );
 
 export const EmptyHomeState = () => (
   <View style={styles.emptyState}>
     <Text style={styles.emptyStateEmoji}>🌿</Text>
-    <Text style={styles.emptyStateText}>No medications scheduled for today.</Text>
-    <Text style={styles.emptyStateSubtext}>You can add new treatments by searching the catalog or using the "+" button on the Treatments tab.</Text>
+    <Text style={styles.emptyStateText}>No hay medicamentos programados para hoy.</Text>
+    <Text style={styles.emptyStateSubtext}>Puedes agregar nuevos tratamientos buscando en el catálogo o usando el botón "+" en la pestaña de Tratamientos.</Text>
   </View>
 );

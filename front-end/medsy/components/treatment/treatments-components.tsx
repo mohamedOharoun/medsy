@@ -12,17 +12,17 @@ export const TreatmentsHeader = ({ title }: any) => (
 export const LoadingTreatments = () => (
   <View style={styles.centerBox}>
     <ActivityIndicator size="large" color="#2E7D5E" />
-    <Text style={styles.loadingText}>Loading your medications...</Text>
+    <Text style={styles.loadingText}>Cargando tus medicamentos...</Text>
   </View>
 );
 
 export const EmptyTreatmentsState = ({ onAddPress }: any) => (
   <View style={styles.emptyContainer}>
     <Ionicons name="medical-outline" size={64} color="#C7C7CC" />
-    <Text style={styles.emptyTitle}>No treatment</Text>
-    <Text style={styles.emptyText}>You haven't added any medications to your treatment yet.</Text>
+    <Text style={styles.emptyTitle}>Sin tratamiento</Text>
+    <Text style={styles.emptyText}>Aún no has agregado medicamentos a tu tratamiento.</Text>
     <TouchableOpacity style={styles.emptyBtn} onPress={onAddPress}>
-        <Text style={styles.emptyBtnText}>Start adding</Text>
+        <Text style={styles.emptyBtnText}>Comenzar a agregar</Text>
     </TouchableOpacity>
   </View>
 );

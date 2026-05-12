@@ -29,8 +29,8 @@ export const scheduleMedicationNotifications = async (
 
       await Notifications.scheduleNotificationAsync({
         content: {
-          title: '¡Time to do drugs, fella!💊',
-          body: `You have to take ${dosage} of ${medicationName}.`,
+          title: '¡Hora de tomar medicamentos!💊',
+          body: `Tienes que tomar ${dosage} de ${medicationName}.`,
           sound: true,
           data: { medicationName, dosage, time },
         },

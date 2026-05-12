@@ -51,7 +51,7 @@ export default function HomeScreen() {
         )}
 
         {/* Listado de Medicamentos */}
-        {state.total > 0 && <Text style={styles.sectionLabel}>My medications for today</Text>}
+        {state.total > 0 && <Text style={styles.sectionLabel}>Mis medicamentos para hoy</Text>}
 
         {state.total > 0 ? (
           state.reminders.map((item) => (

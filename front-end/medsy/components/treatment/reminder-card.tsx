@@ -19,11 +19,11 @@ export function ReminderCard({ item, onTake }: any) {
 
       {item.taken ? (
         <View style={styles.takenBadge}>
-          <Text style={styles.takenBadgeText}>✓ Taken</Text>
+          <Text style={styles.takenBadgeText}>✓ Tomado</Text>
         </View>
       ) : (
         <TouchableOpacity style={styles.takeBtn} onPress={() => onTake(item.id)} activeOpacity={0.8}>
-          <Text style={styles.takeBtnText}>Take</Text>
+          <Text style={styles.takeBtnText}>Tomar</Text>
         </TouchableOpacity>
       )}
     </View>

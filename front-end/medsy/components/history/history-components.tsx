@@ -13,7 +13,7 @@ export const HistoryHeader = ({ title, subtitle }: any) => (
 export const EmptyHistoryState = () => (
   <View style={styles.emptyContainer}>
     <Ionicons name="time-outline" size={64} color="#C7C7CC" />
-    <Text style={styles.emptyTitle}>No records</Text>
-    <Text style={styles.emptyText}>Your detailed history of completed medications and past intakes will appear here.</Text>
+    <Text style={styles.emptyTitle}>Sin registros</Text>
+    <Text style={styles.emptyText}>Tu historial detallado de medicamentos completados e ingestas pasadas aparecerá aquí.</Text>
   </View>
 );

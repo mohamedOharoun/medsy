@@ -18,8 +18,8 @@ export default function SearchScreen() {
         
         {/* Encabezado */}
         <View style={styles.header}>
-          <Text style={styles.title}>Medication Catalog</Text>
-          <Text style={styles.subtitle}>Filter by name or substance</Text>
+          <Text style={styles.title}>Catálogo de Medicamentos</Text>
+          <Text style={styles.subtitle}>Filtrar por nombre o sustancia</Text>
         </View>
 
         {/* Buscador y Filtros */}
@@ -32,7 +32,7 @@ export default function SearchScreen() {
             />
           ) : (
             <CollapsedHeader 
-              title={state.name || state.substance || state.administration || 'Medication Search'} 
+              title={state.name || state.substance || state.administration || 'Búsqueda de Medicamentos'} 
               onPress={actions.expandHeader} 
             />
           )}

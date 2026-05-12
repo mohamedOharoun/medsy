@@ -15,7 +15,7 @@ export default function HistoryScreen() {
       <StatusBar barStyle="dark-content" backgroundColor="#F2F2F7" />
       <View style={styles.container}>
 
-        <HistoryHeader title="History" subtitle="Your past intake records" />
+        <HistoryHeader title="Historial" subtitle="Tus registros de ingestas pasadas" />
 
         <ScrollView contentContainerStyle={styles.listContent}>
           <EmptyHistoryState />

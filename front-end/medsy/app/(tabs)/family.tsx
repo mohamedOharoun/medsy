@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function FamilyScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Family Unit</Text>
+      <Text style={styles.title}>Unidad Familiar</Text>
     </View>
   );
 }

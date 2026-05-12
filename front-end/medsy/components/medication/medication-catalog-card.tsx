@@ -38,7 +38,7 @@ export const MedicationCatalogCard = ({ item, onPress }: { item: MedicationCatal
 
       {vias ? (
         <Text style={styles.cardDetail}>
-          <Text style={styles.boldDetail}>Vía de admn: </Text>
+          <Text style={styles.boldDetail}>Vía de administración: </Text>
           {vias}
         </Text>
       ) : null}

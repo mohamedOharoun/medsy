@@ -121,7 +121,7 @@ export const TreatmentModal: React.FC<Props> = ({ visible, treatment, onClose, o
 
   const handleSave = async () => {
     if (!state.selectedMed || !state.dosageNum || !state.dosageUnit || !state.frequency) {
-      return alert("Please select all form fields.");
+      return alert("Por favor selecciona todos los campos del formulario.");
     }
     const finalDosage = `${state.dosageNum} ${state.dosageUnit}`;
     const finalName = state.selectedMed.nombre;
@@ -158,19 +158,19 @@ export const TreatmentModal: React.FC<Props> = ({ visible, treatment, onClose, o
               <GestureDetector gesture={panGesture}>
                 <Animated.View style={[styles.modalContainer, animatedStyle]}>
                   <View style={styles.dragHandle} />
-                  <Text style={styles.title}>{treatment ? 'Edit medication' : 'New medication'}</Text>
+                  <Text style={styles.title}>{treatment ? 'Editar medicamento' : 'Nuevo medicamento'}</Text>
 
                   <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
 
                     {/* AUTOCOMPLETE DE MEDICAMENTOS */}
                     <View style={styles.dropdownContainer}>
-                      <Text style={styles.label}>Medication name (Catalog)</Text>
+                      <Text style={styles.label}>Nombre del medicamento (Catálogo)</Text>
                       <View style={styles.inputRow}>
                         <TextInput
                           style={styles.inputText}
                           value={state.medQuery}
                           onChangeText={(t) => { actions.setMedQuery(t); }}
-                          placeholder="Type at least 3 letters..."
+                          placeholder="Escribe al menos 3 letras..."
                           placeholderTextColor="#A1A1AA"
                         />
                         {state.loadingSearch && <ActivityIndicator size="small" color="#2E7D5E" />}
@@ -198,22 +198,22 @@ export const TreatmentModal: React.FC<Props> = ({ visible, treatment, onClose, o
                     {/* DOSIS */}
                     <View style={{ flexDirection: 'row', gap: 12 }}>
                       <View style={{ flex: 1 }}>
-                        <CustomDropdown label="Quantity" value={state.dosageNum} options={NUMBERS} onSelect={actions.setDosageNum} />
+                        <CustomDropdown label="Cantidad" value={state.dosageNum} options={NUMBERS} onSelect={actions.setDosageNum} />
                       </View>
                       <View style={{ flex: 1 }}>
-                        <CustomDropdown label="Unit" value={state.dosageUnit} options={UNITS} onSelect={actions.setDosageUnit} />
+                        <CustomDropdown label="Unidad" value={state.dosageUnit} options={UNITS} onSelect={actions.setDosageUnit} />
                       </View>
                     </View>
 
                     {/* FRECUENCIA */}
                     <View>
-                      <CustomDropdown label="Frequency" value={state.frequency} options={FREQUENCIES} onSelect={actions.setFrequency} />
+                      <CustomDropdown label="Frecuencia" value={state.frequency} options={FREQUENCIES} onSelect={actions.setFrequency} />
                     </View>
 
                     {/* HORARIO */}
                     {showTime && (
                       <View style={styles.timeSection}>
-                        <Text style={styles.label}>{state.frequency === 'Once a day' ? 'Intake time' : 'First intake time'}</Text>
+                        <Text style={styles.label}>{state.frequency === 'Una vez al día' ? 'Hora de ingesta' : 'Primera hora de ingesta'}</Text>
                         <TouchableOpacity style={styles.timePickerBtn} onPress={() => actions.setShowTimePicker(true)}>
                           <Text style={styles.timeValue}>
                             {state.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -243,7 +243,7 @@ export const TreatmentModal: React.FC<Props> = ({ visible, treatment, onClose, o
 
                         {state.calculatedTimes.length > 1 && (
                           <View style={styles.timeScheduleContainer}>
-                            <Text style={styles.scheduleTitle}>Calculated schedule:</Text>
+                            <Text style={styles.scheduleTitle}>Horario calculado:</Text>
                             <View style={styles.timeTagContainer}>
                               {state.calculatedTimes.map((t, idx) => (
                                 <View key={idx} style={styles.timeTag}>
@@ -258,14 +258,14 @@ export const TreatmentModal: React.FC<Props> = ({ visible, treatment, onClose, o
 
                     <View style={[styles.buttonRow, { marginTop: 20 }]}>
                       <TouchableOpacity style={[styles.button, styles.cancelBtn]} onPress={closeWithAnimation}>
-                        <Text style={styles.cancelText}>Cancel</Text>
+                        <Text style={styles.cancelText}>Cancelar</Text>
                       </TouchableOpacity>
                       <TouchableOpacity
                         style={[styles.button, styles.saveBtn, (!state.selectedMed || !state.dosageNum || !state.dosageUnit || !state.frequency) && styles.disabledBtn]}
                         onPress={handleSave}
                         disabled={!state.selectedMed || !state.dosageNum || !state.dosageUnit || !state.frequency}
                       >
-                        <Text style={styles.saveText}>Save</Text>
+                        <Text style={styles.saveText}>Guardar</Text>
                       </TouchableOpacity>
                     </View>
 
