@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-export function ReminderCard({ item, onTake }: any) {
+export function ReminderCard({ item, onTake, onUntake }: any) {
   return (
     <View style={[styles.reminderCard, item.taken && styles.reminderCardDone]}>
       <View style={styles.reminderLeft}>
@@ -18,9 +18,12 @@ export function ReminderCard({ item, onTake }: any) {
       </View>
 
       {item.taken ? (
-        <View style={styles.takenBadge}>
-          <Text style={styles.takenBadgeText}>✓ Tomado</Text>
-        </View>
+        <TouchableOpacity style={styles.takenBtn} onPress={() => onUntake(item.id)} activeOpacity={0.8}>
+          <Text style={styles.takenBtnText}>✓ Tomado</Text>
+          <View style={styles.untakeIcon}>
+            <Text style={styles.untakeIconText}>✕</Text>
+          </View>
+        </TouchableOpacity>
       ) : (
         <TouchableOpacity style={styles.takeBtn} onPress={() => onTake(item.id)} activeOpacity={0.8}>
           <Text style={styles.takeBtnText}>Tomar</Text>
@@ -30,13 +33,13 @@ export function ReminderCard({ item, onTake }: any) {
   );
 }
 
-const GREEN       = '#2E7D5E';
+const GREEN = '#2E7D5E';
 const GREEN_LIGHT = '#E8F5EE';
-const CARD        = '#FFFFFF';
-const TEXT        = '#1C1C1E';
-const SUBTEXT     = '#6B6B6B';
-const DONE_BG     = '#F2F2F0';
-const DONE_TEXT   = '#AAAAAA';
+const CARD = '#FFFFFF';
+const TEXT = '#1C1C1E';
+const SUBTEXT = '#6B6B6B';
+const DONE_BG = '#F2F2F0';
+const DONE_TEXT = '#AAAAAA';
 
 const styles = StyleSheet.create({
   reminderCard: { backgroundColor: CARD, borderRadius: 18, padding: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.07, shadowRadius: 8, elevation: 3 },
@@ -52,6 +55,8 @@ const styles = StyleSheet.create({
   reminderTime: { fontSize: 15, color: SUBTEXT },
   takeBtn: { backgroundColor: GREEN, paddingHorizontal: 20, paddingVertical: 14, borderRadius: 14, minWidth: 82, alignItems: 'center' },
   takeBtnText: { color: '#FFFFFF', fontWeight: '700', fontSize: 16 },
-  takenBadge: { backgroundColor: GREEN_LIGHT, paddingHorizontal: 14, paddingVertical: 10, borderRadius: 12 },
-  takenBadgeText: { color: GREEN, fontWeight: '700', fontSize: 15 },
+  takenBtn: { backgroundColor: GREEN_LIGHT, paddingLeft: 14, paddingRight: 10, paddingVertical: 10, borderRadius: 12, flexDirection: 'row', alignItems: 'center', gap: 6 },
+  takenBtnText: { color: GREEN, fontWeight: '700', fontSize: 15 },
+  untakeIcon: { backgroundColor: 'rgba(46, 125, 94, 0.15)', borderRadius: 10, width: 22, height: 22, alignItems: 'center', justifyContent: 'center' },
+  untakeIconText: { color: GREEN, fontSize: 11, fontWeight: 'bold' },
 });

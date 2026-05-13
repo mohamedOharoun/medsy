@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Treatment } from '../../services/api';
 
 interface Props {
   treatment: Treatment;
   onEdit: (t: Treatment) => void;
-  onDelete: (id: number) => void;
+  onDelete: (t: Treatment) => void;
 }
 
 export const MedicationListItem: React.FC<Props> = ({ treatment, onEdit, onDelete }) => {
@@ -26,7 +26,7 @@ export const MedicationListItem: React.FC<Props> = ({ treatment, onEdit, onDelet
         <TouchableOpacity style={styles.iconButton} onPress={() => onEdit(treatment)}>
           <Ionicons name="pencil" size={18} color="#2E7D5E" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton} onPress={() => onDelete(treatment.id)}>
+        <TouchableOpacity style={styles.iconButton} onPress={() => onDelete(treatment)}>
           <Ionicons name="trash" size={18} color="#8E8E93" />
         </TouchableOpacity>
       </View>

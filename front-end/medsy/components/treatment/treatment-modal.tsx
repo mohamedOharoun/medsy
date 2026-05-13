@@ -26,7 +26,7 @@ const CustomDropdown = ({ label, value, options, onSelect }: any) => {
     <View style={styles.dropdownContainer}>
       <Text style={styles.label}>{label}</Text>
       <TouchableOpacity style={styles.input} onPress={() => setOpen(!open)}>
-        <Text style={{ color: value ? '#1C1C1E' : '#A1A1AA', fontSize: 16 }}>{value || 'Choose...'}</Text>
+        <Text style={{ color: value ? '#1C1C1E' : '#A1A1AA', fontSize: 16 }}>{value || 'Seleccionar...'}</Text>
         <Ionicons name={open ? "chevron-up" : "chevron-down"} size={20} color="#8E8E93" />
       </TouchableOpacity>
       {open && (

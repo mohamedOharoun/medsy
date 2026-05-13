@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { MedicationListItem } from '../../components/medication/medication-list-item';
 import { TreatmentModal } from '../../components/treatment/treatment-modal';
+import { DeleteModal } from '../../components/treatment/delete-modal';
 
 // Importaciones separadas
 import { useTreatmentsScreenLogic } from '../../hooks/use-treatments-screen-logic';
@@ -32,7 +33,7 @@ export default function TreatmentsScreen() {
               <MedicationListItem 
                 treatment={item} 
                 onEdit={actions.handleEditPress} 
-                onDelete={actions.deleteTreatment} 
+                onDelete={actions.handleDeletePress} 
               />
             )}
             ListEmptyComponent={
@@ -46,6 +47,13 @@ export default function TreatmentsScreen() {
           treatment={state.editingTreatment}
           onClose={actions.closeModal}
           onSave={actions.handleSave}
+        />
+
+        <DeleteModal
+          visible={state.deleteModalVisible}
+          treatmentName={state.treatmentToDelete?.medicationName || ''}
+          onConfirm={actions.confirmDelete}
+          onCancel={actions.cancelDelete}
         />
         
         <FAB onPress={actions.handleAddPress} />

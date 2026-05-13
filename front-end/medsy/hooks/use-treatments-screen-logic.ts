@@ -7,6 +7,9 @@ export function useTreatmentsScreenLogic() {
   const { treatments, loading, addTreatment, updateTreatment, deleteTreatment } = useTreatments();
   const [modalVisible, setModalVisible] = useState(false);
   const [editingTreatment, setEditingTreatment] = useState<Treatment | null>(null);
+  
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [treatmentToDelete, setTreatmentToDelete] = useState<Treatment | null>(null);
   const { add } = useLocalSearchParams();
 
   const handleAddPress = () => {
@@ -37,8 +40,26 @@ export function useTreatmentsScreenLogic() {
     }
   };
 
+  const handleDeletePress = (t: Treatment) => {
+    setTreatmentToDelete(t);
+    setDeleteModalVisible(true);
+  };
+
+  const confirmDelete = () => {
+    if (treatmentToDelete) {
+      deleteTreatment(treatmentToDelete.id);
+      setDeleteModalVisible(false);
+      setTreatmentToDelete(null);
+    }
+  };
+
+  const cancelDelete = () => {
+    setDeleteModalVisible(false);
+    setTreatmentToDelete(null);
+  };
+
   return {
-    state: { treatments, loading, modalVisible, editingTreatment },
-    actions: { handleAddPress, handleEditPress, closeModal, handleSave, deleteTreatment }
+    state: { treatments, loading, modalVisible, editingTreatment, deleteModalVisible, treatmentToDelete },
+    actions: { handleAddPress, handleEditPress, closeModal, handleSave, handleDeletePress, confirmDelete, cancelDelete }
   };
 }

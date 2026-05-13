@@ -33,13 +33,19 @@ export function useHomeLogic() {
     );
   };
 
+  const handleUntake = (id: string) => {
+    setReminders((prev) =>
+      prev.map((r) => (r.id === id ? { ...r, taken: false } : r))
+    );
+  };
+
   const doneCount = reminders.filter((r) => r.taken).length;
   const total = reminders.length;
   const allDone = total > 0 && doneCount === total;
 
   return {
     state: { reminders, loading, doneCount, total, allDone },
-    actions: { handleTake, router, refetch }
+    actions: { handleTake, handleUntake, router, refetch }
   };
 }
 

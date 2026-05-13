@@ -55,7 +55,7 @@ export default function HomeScreen() {
 
         {state.total > 0 ? (
           state.reminders.map((item) => (
-            <ReminderCard key={item.id} item={item} onTake={actions.handleTake} />
+            <ReminderCard key={item.id} item={item} onTake={actions.handleTake} onUntake={actions.handleUntake} />
           ))
         ) : (
           <EmptyHomeState />
