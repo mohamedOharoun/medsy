@@ -1,6 +1,7 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Alert, Platform } from 'react-native';
+import React, { useRef } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Alert, Platform, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { Treatment } from '../../services/api';
 
 interface Props {
@@ -10,27 +11,67 @@ interface Props {
 }
 
 export const MedicationListItem: React.FC<Props> = ({ treatment, onEdit, onDelete }) => {
+  const swipeableRef = useRef<Swipeable>(null);
+
+  const renderLeftActions = (progress: any, dragX: any) => {
+    return (
+      <TouchableOpacity 
+        style={[styles.actionButton, styles.editAction]} 
+        onPress={() => {
+          swipeableRef.current?.close();
+          onEdit(treatment);
+        }}
+      >
+        <Ionicons name="pencil" size={24} color="#FFF" />
+        <Text style={styles.actionText}>Editar</Text>
+      </TouchableOpacity>
+    );
+  };
+
+  const renderRightActions = (progress: any, dragX: any) => {
+    return (
+      <TouchableOpacity 
+        style={[styles.actionButton, styles.deleteAction]} 
+        onPress={() => {
+          swipeableRef.current?.close();
+          onDelete(treatment);
+        }}
+      >
+        <Ionicons name="trash" size={24} color="#FFF" />
+        <Text style={styles.actionText}>Eliminar</Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
-    <View style={styles.card}>
-      <View style={styles.iconContainer}>
-        <Ionicons name="medical" size={24} color="#2E7D5E" />
+    <Swipeable 
+      ref={swipeableRef}
+      renderLeftActions={renderLeftActions} 
+      renderRightActions={renderRightActions}
+      overshootLeft={false}
+      overshootRight={false}
+    >
+      <View style={styles.card}>
+        <View style={styles.iconContainer}>
+          <Ionicons name="medical" size={24} color="#2E7D5E" />
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.title}>{treatment.medicationName}</Text>
+          <Text style={styles.details}>{treatment.dosage} • {treatment.frequency}</Text>
+          {treatment.times && treatment.times.length > 0 && (
+            <Text style={styles.timesText}>Próximas ingestas: {treatment.times.join(', ')}</Text>
+          )}
+        </View>
+        <View style={styles.actions}>
+          <TouchableOpacity style={styles.iconButton} onPress={() => onEdit(treatment)}>
+            <Ionicons name="pencil" size={18} color="#2E7D5E" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconButton} onPress={() => onDelete(treatment)}>
+            <Ionicons name="trash" size={18} color="#8E8E93" />
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.infoContainer}>
-        <Text style={styles.title}>{treatment.medicationName}</Text>
-        <Text style={styles.details}>{treatment.dosage} • {treatment.frequency}</Text>
-        {treatment.times && treatment.times.length > 0 && (
-          <Text style={styles.timesText}>Próximas ingestas: {treatment.times.join(', ')}</Text>
-        )}
-      </View>
-      <View style={styles.actions}>
-        <TouchableOpacity style={styles.iconButton} onPress={() => onEdit(treatment)}>
-          <Ionicons name="pencil" size={18} color="#2E7D5E" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton} onPress={() => onDelete(treatment)}>
-          <Ionicons name="trash" size={18} color="#8E8E93" />
-        </TouchableOpacity>
-      </View>
-    </View>
+    </Swipeable>
   );
 };
 
@@ -84,5 +125,26 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#F2F2F7',
     borderRadius: 12,
+  },
+  actionButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 80,
+    marginBottom: 12,
+    borderRadius: 16,
+  },
+  editAction: {
+    backgroundColor: '#2E7D5E',
+    marginRight: 8,
+  },
+  deleteAction: {
+    backgroundColor: '#FF3B30',
+    marginLeft: 8,
+  },
+  actionText: {
+    color: '#FFF',
+    fontSize: 12,
+    fontWeight: '600',
+    marginTop: 4,
   }
 });
