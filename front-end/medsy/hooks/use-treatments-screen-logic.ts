@@ -10,6 +10,10 @@ export function useTreatmentsScreenLogic() {
 
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [treatmentToDelete, setTreatmentToDelete] = useState<Treatment | null>(null);
+
+  const [successModalVisible, setSuccessModalVisible] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('Tratamiento creado con éxito');
+
   const { add } = useLocalSearchParams();
 
   const handleAddPress = () => {
@@ -32,11 +36,13 @@ export function useTreatmentsScreenLogic() {
     setModalVisible(false);
   };
 
-  const handleSave = (name: string, dosage: string, frequency: string, times?: string[]) => {
+  const handleSave = async (name: string, dosage: string, frequency: string, times?: string[]) => {
     if (editingTreatment) {
-      updateTreatment(editingTreatment.id, name, dosage, frequency, times);
+      await updateTreatment(editingTreatment.id, name, dosage, frequency, times);
     } else {
-      addTreatment(name, dosage, frequency, times);
+      await addTreatment(name, dosage, frequency, times);
+      setSuccessMessage('Tratamiento creado con éxito');
+      setSuccessModalVisible(true);
     }
   };
 
@@ -45,10 +51,15 @@ export function useTreatmentsScreenLogic() {
     setDeleteModalVisible(true);
   };
 
-  const confirmDelete = () => {
+  const confirmDelete = async () => {
     if (treatmentToDelete) {
-      deleteTreatment(treatmentToDelete.id);
+      await deleteTreatment(treatmentToDelete.id);
       setDeleteModalVisible(false);
+
+      setTimeout(() => {
+        setSuccessMessage('Tratamiento eliminado con éxito');
+        setSuccessModalVisible(true);
+      }, 350);
     }
   };
 
@@ -56,8 +67,12 @@ export function useTreatmentsScreenLogic() {
     setDeleteModalVisible(false);
   };
 
+  const closeSuccessModal = () => {
+    setSuccessModalVisible(false);
+  };
+
   return {
-    state: { treatments, loading, modalVisible, editingTreatment, deleteModalVisible, treatmentToDelete },
-    actions: { handleAddPress, handleEditPress, closeModal, handleSave, handleDeletePress, confirmDelete, cancelDelete }
+    state: { treatments, loading, modalVisible, editingTreatment, deleteModalVisible, treatmentToDelete, successModalVisible, successMessage },
+    actions: { handleAddPress, handleEditPress, closeModal, handleSave, handleDeletePress, confirmDelete, cancelDelete, closeSuccessModal }
   };
 }

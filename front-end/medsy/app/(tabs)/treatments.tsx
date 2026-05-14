@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { MedicationListItem } from '../../components/medication/medication-list-item';
 import { TreatmentModal } from '../../components/treatment/treatment-modal';
 import { DeleteModal } from '../../components/treatment/delete-modal';
+import { SuccessModal } from '../../components/treatment/success-modal';
 
 // Importaciones separadas
 import { useTreatmentsScreenLogic } from '../../hooks/use-treatments-screen-logic';
@@ -55,9 +56,16 @@ export default function TreatmentsScreen() {
           onConfirm={actions.confirmDelete}
           onCancel={actions.cancelDelete}
         />
+
+        <SuccessModal
+          visible={state.successModalVisible}
+          message={state.successMessage}
+          onClose={actions.closeSuccessModal}
+        />
         
         <FAB onPress={actions.handleAddPress} />
       </View>
     </SafeAreaView>
   );
 }
+
