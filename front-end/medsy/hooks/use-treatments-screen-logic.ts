@@ -41,8 +41,10 @@ export function useTreatmentsScreenLogic() {
       await updateTreatment(editingTreatment.id, name, dosage, frequency, times);
     } else {
       await addTreatment(name, dosage, frequency, times);
-      setSuccessMessage('Tratamiento creado con éxito');
-      setSuccessModalVisible(true);
+      setTimeout(() => {
+        setSuccessMessage('Tratamiento creado con éxito');
+        setSuccessModalVisible(true);
+      }, 350);
     }
   };
 
