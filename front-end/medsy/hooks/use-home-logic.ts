@@ -20,7 +20,7 @@ export function useHomeLogic() {
         id: t.id.toString(),
         name: t.medicationName,
         dose: t.dosage,
-        time: t.frequency, 
+        time: t.frequency,
         taken: false,
       }));
       setReminders(mapped);
@@ -51,7 +51,7 @@ export function useHomeLogic() {
 
 export function getGreeting() {
   const h = new Date().getHours();
-  if (h < 12) return 'Good morning';
-  if (h < 20) return 'Good afternoon';
-  return 'Good evening';
+  if (h < 12) return 'Buenos días';
+  if (h < 20) return 'Buenas tardes';
+  return 'Buenas noches';
 }

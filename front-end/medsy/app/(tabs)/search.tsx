@@ -18,7 +18,7 @@ export default function SearchScreen() {
         
         {/* Encabezado */}
         <View style={styles.header}>
-          <Text style={styles.title}>Catálogo de Medicamentos</Text>
+          <Text style={styles.title}>Catálogo de medicamentos</Text>
           <Text style={styles.subtitle}>Filtrar por nombre o sustancia</Text>
         </View>
 
