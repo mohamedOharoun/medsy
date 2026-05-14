@@ -7,7 +7,7 @@ export function useTreatmentsScreenLogic() {
   const { treatments, loading, addTreatment, updateTreatment, deleteTreatment } = useTreatments();
   const [modalVisible, setModalVisible] = useState(false);
   const [editingTreatment, setEditingTreatment] = useState<Treatment | null>(null);
-  
+
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [treatmentToDelete, setTreatmentToDelete] = useState<Treatment | null>(null);
   const { add } = useLocalSearchParams();
@@ -49,13 +49,11 @@ export function useTreatmentsScreenLogic() {
     if (treatmentToDelete) {
       deleteTreatment(treatmentToDelete.id);
       setDeleteModalVisible(false);
-      setTreatmentToDelete(null);
     }
   };
 
   const cancelDelete = () => {
     setDeleteModalVisible(false);
-    setTreatmentToDelete(null);
   };
 
   return {
